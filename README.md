@@ -22,7 +22,7 @@ Things you may want to cover 📝
 
 
 * Ruby version
-2.7.4 + rails 6.1.4 ©
+ 2.7.4  ©
 
 
 * System dependencies
@@ -30,7 +30,7 @@ Things you may want to cover 📝
  `install bundle`
 
 * Configuration
- Rails 5.2.6.2 ©
+ Rails  6.1.4 ©
 
 
 * Database creation
