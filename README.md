@@ -62,8 +62,7 @@ Things you may want to cover 📝
 <p align="left"> This project use the following tech : </p>
 
 <p align="left">
-<a href="https://www.w3schools.com/js/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" alt="js" width="40" height="40"/> </a>
-<a href="https://www.w3schools.com/js/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" alt="js" width="40" height="40"/> </a>
-<a href="https://www.w3schools.com/js/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original.svg" alt="js" width="40" height="40"/> </a>
+<a href="https://www.w3schools.com/js/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="js" width="40" height="40"/> </a>
+<a href="https://www.w3schools.com/js/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" alt="ruby" width="40" height="40"/> </a>
+<a href="https://www.w3schools.com/js/" target="_blank" rel="noreferrer"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" alt="rails" width="40" height="40"/> </a>
 </p>
-
