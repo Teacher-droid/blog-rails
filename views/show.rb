@@ -8,7 +8,6 @@ class Show
   # clrscr - Flush the screen using the Xterm command 'clear'
   # WARNING: 'clear' does not exist on all OSs, hence this code is not fully portable
   def self.clrscr
-    system('clear')
   end
 
   # disp - Display the 'message' content to the STDIN (DISPLAY:0) *without* a "\n" (line feed)
