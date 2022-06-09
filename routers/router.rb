@@ -53,6 +53,7 @@ class Router
         #   Show.pause
         # end
       when 5
+        Show.displn("")
         Show.displn("--~={ !! Goodbye... Hope to see you (not too) soon, Stranger !! }=~--")
         Show.displn("")
         exit = true
