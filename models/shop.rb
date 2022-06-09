@@ -33,7 +33,6 @@ class Shop
         Show.displn("  > Sought CSV file '#{@file}' does not exist, sorry. Hence not able to display any item.")
       end
       self.stock = []
-      return false
     else
       if verbose
         Show.displn("  > CSV file found. Block reading from it.")
