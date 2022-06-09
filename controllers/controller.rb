@@ -28,6 +28,7 @@ class Controller
   # shop_index - Method listing all existing items within a given shop
   def shop_index
     if @shop.stock != []
+      Show.list_items(@shop.stock)
       return true
     else
       Show.disp("  > Sadly, the shop stock is... Totally empty. Try storing some items before asking for inventory, dumbroad!")
