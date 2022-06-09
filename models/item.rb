@@ -14,7 +14,6 @@ class Item
     @brand = my_brand
     @unit_price = my_unit_price
     @quantity = my_quantity
-    @@unique_item_counter += 1
   end
 
 end
