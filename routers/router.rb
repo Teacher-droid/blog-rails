@@ -10,58 +10,96 @@ class Router
   attr_accessor :controller
 
   def initialize
+    Show.clrscr
     @controller = Controller.new($csv)
   end 
 
   # This is where all the routing magic happens... 
+  # Sorry for using a "case...when", I know how much sore this is for some of you :-)
   def perform 
-    tmp_prompt = []
-    tmp_gossip_id = 0
-    tmp_route = false
-    exit = false
-    Show.displn("");
-    Show.displn("");
-    Show.displn("--~={ !! Welcome to #{@controller.shop.name} !! }=~--")
-    while !exit
-      choice = Show.main_menu
-      case choice
-      when 1 # READ all stored gossips
-        Show.displn("You decided to have a look at our shop's stock: let's do it!")
-        tmp_route = @controller.shop_index
-      when 2 # CREATE a new item
-        # Show.displn("You chose to store a new gossip. Cool!")
-        # tmp_prompt = Show.input_gossip
-        # @controller.create_gossip(tmp_prompt[0], tmp_prompt[1])
-      when 3 # UPDATE an existing item
-        Show.displn("Hey, you! The UPDATE feature for our items is still WIP. Keep calm, lay back and eat a pizza instead.")
-      when 4 # DELETE a given gossip
-        Show.displn("Hey, you! The DELETE feature for our items is still WIP. Have a beer and come back later.")
-        # Show.displn("Yo, Stranger! This feature is not for lamerz... Be careful with what you do to my gossip list, OK?")
-        # Show.displn("")
-        # tmp_route = @controller.index_gossips
-        # if tmp_route
-        #   tmp_gossip_id = Show.prompt_for_deletion
-        #   if @controller.delete_gossip(tmp_gossip_id)
-        #     Show.displn("Nicely done, Stranger! Looks like gossip ##{tmp_gossip_id} has been deleted. Surely telling unmentionable things about you ;-)")
-        #     Show.pause
-        #   else
-        #     Show.displn("Oooops! Looks like something went wrong... Next time, ask your 3-year-old brother or sister for help, Stranger.")
-        #     Show.pause
-        #   end
-        # else
-        #   Show.displn("Looks like the Gossip file is still empty: no mean to delete from it, then... You fool :-D")
-        #   Show.pause
-        # end
-      when 5
-        Show.displn("")
-        Show.displn("--~={ !! Goodbye... Hope to see you (not too) soon, Stranger !! }=~--")
-        Show.displn("")
-        exit = true
+    Show.welcome(@controller.shop.name)
+    self.main_route
+  end
+
+  # main_route - Manages the shop root menu of the shop
+  def main_route
+    exit_shop = false
+    while !exit_shop
+      case Show.main_menu
+      when 1 # Redirect to CLIENT main menu
+        self.main_route_client
+      when 2 # Redirect to ADMIN main menu
+        self.main_route_admin if @controller.check_and_route_admin
+      when 3 # EXIT from shop
+        Show.goodbye(@controller.shop.name)
+        exit_shop = true
       else
-        Show.displn("/!\\ You apparently encountered difficulties typing an adequate choice... Ask your dog or cat for help, dumb ass ;-)")
+        Show.menu_input_error_message
       end
     end
   end
-end
 
+  # main_route_admin - Manages the root of the ADMIN menu of the shop
+  def main_route_admin
+    exit_admin = false
+    while !exit_admin
+      case Show.main_menu_admin
+      when 1 # LIST all stored items
+        self.item_select_route
+      when 2 # CREATE a new item
+        @controller.item_create
+      when 3 # EXIT from shop
+        exit_admin = true
+      else
+        Show.menu_input_error_message
+      end
+    end
+  end
+
+  # main_route_client - Manages the root of the CLIENT menu of the shop
+  def main_route_client
+    Show.displn(" Still a dead-end here ")
+    Show.pause
+  end
+
+  # item_select_route - Manages routing to the item details
+  def item_select_route
+    exit_item_select = false
+    while !exit_item_select
+      if @controller.shop_index
+        choice = Show.select_item_menu
+        if choice != 0
+          if @controller.item_show(choice)
+            self.item_actions_route(choice)
+          else
+            exit_item_select = true
+          end
+        else
+          exit_item_select = true
+        end
+      else
+        exit_item_select = true
+      end
+    end
+  end
+
+  # item_actions_route - Manages routing to the item details
+  def item_actions_route(my_item_id)
+    exit_item_actions = false
+    while !exit_item_actions
+      case Show.item_actions_menu
+      when 1 # UPDATE current item
+        @controller.item_update(my_item_id)
+      when 2 # DELETE current item
+        @controller.item_delete(my_item_id)
+        exit_item_actions = true
+      when 3 # EXIT from item actions menu
+        exit_item_actions = true
+      else
+        Show.menu_input_error_message
+      end
+    end
+  end
+
+end
 
