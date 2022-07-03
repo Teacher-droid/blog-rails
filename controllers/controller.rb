@@ -112,7 +112,7 @@ class Controller
   def item_delete(item_id)
     if Show.confirm_item_deletion_menu(item_id)
       @shop.stock = @shop.stock.reject { |obj| obj.id == item_id }
-      Show.displn("  ✔️ Item '#{item_id}' erased from inventory.")
+      Show.displn("   Item '#{item_id}' erased from inventory.")
       # TO DO: instantly saves the updated shop into the CSV file or delay this task ?
     else
       Show.displn("   Deletion of item '#{item_id}' cancelled by user.")
